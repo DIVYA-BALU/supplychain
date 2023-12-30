@@ -24,15 +24,10 @@ public class OrderDetailsController {
 	OrderDetailsService orderDetailsService;
 	
 	@GetMapping("/getallorder")
-	public ResponseEntity<List<OrderDetails>> readAllOrder()
+	public List<OrderDetails> readAllOrder()
 	{
-		try{
-			return new ResponseEntity<List<OrderDetails>>(orderDetailsService.getAllOrder(),HttpStatus.OK);
-		}
-		catch(Exception e)
-		{
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
-		}
+			return orderDetailsService.getAllOrder();
+		
 	}
 
     @GetMapping("/select/orderbyid/{id}")

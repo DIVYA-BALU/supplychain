@@ -10,7 +10,7 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(value = NoOrderFoundException.class)
     public ResponseEntity handleNoOrderFoundException(){
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("No orders found",HttpStatus.BAD_REQUEST);
 
     }
     

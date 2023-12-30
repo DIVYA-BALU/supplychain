@@ -5,23 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Exception.NoOrderFoundException;
 import com.example.jwt.Entity.OrderDetails;
-import com.example.repository.OrderDetailsRepository;
+import com.example.jwt.Exception.NoOrderFoundException;
 import com.example.jwt.Service.OrderDetailsService;
+import com.example.jwt.repository.OrderDetailsRepository;
 
 @Service
 public class OrderDetailsImplementation implements OrderDetailsService{
+
     @Autowired
 	OrderDetailsRepository orderDetailsRepo;
 	
 	
 	public OrderDetails getById(String id) {
-		OrderDetails details=orderDetailsRepo.findById(id).get();
-		if(details!=null)
-			return details;
-		else
-			throw new NoOrderFoundException("No Orders found for given ID");
+		return orderDetailsRepo.findById(id)
+		.orElseThrow(() -> new NoOrderFoundException("No Orders found for given ID"));
 	}
 	
 	public String saveOrder(OrderDetails a) {
@@ -64,6 +62,11 @@ public class OrderDetailsImplementation implements OrderDetailsService{
 	}
 	
 	public List<OrderDetails> getAllOrder() {
-		return orderDetailsRepo.findAll();
+		List<OrderDetails> orders = orderDetailsRepo.findAll();
+        if (!orders.isEmpty()) {
+            return orders;
+        } else {
+            throw new NoOrderFoundException("No orders found");
+        }			
 	}
 }
