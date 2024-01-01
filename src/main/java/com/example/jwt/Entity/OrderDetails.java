@@ -28,5 +28,7 @@ public class OrderDetails {
 	
 	@Field("deliveryStatus")
 	private String deliveryStatus;
+
+	private byte[] img; 
 	
 }

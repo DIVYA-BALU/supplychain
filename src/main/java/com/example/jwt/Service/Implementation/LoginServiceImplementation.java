@@ -26,8 +26,18 @@ public class LoginServiceImplementation implements LoginService{
 
     public boolean validateToken(String token,String username) {
         System.out.println( "token "+token);
-        String tokengot=getToken(username,"");
-        if(tokengot.equals(token))
+        // String tokengot=getToken(username,"");
+        // if(tokengot.equals(token))
+        //     return true;
+        // return false;
+
+        Claims claims = Jwts.parser()
+                        .setSigningKey("secret")
+                        .parseClaimsJws(token)
+                        .getBody();
+        String subject = claims.getSubject();
+        System.out.println( "subject "+subject);
+        if(subject.equals(token))
             return true;
         return false;
     }
