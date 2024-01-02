@@ -7,6 +7,5 @@ import com.example.jwt.Entity.Image;
 
 @Repository
 public interface ImageRepository extends MongoRepository<Image,String>{
-    
 
 }

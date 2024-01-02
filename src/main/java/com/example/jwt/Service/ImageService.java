@@ -1,13 +1,15 @@
 package com.example.jwt.Service;
 
 import java.io.IOException;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.jwt.Entity.Image;
 
 
 public interface ImageService {
-     public String storeImage(MultipartFile file) throws IOException;
-     public GridFsResource getImage(String fileName);
+     public String storeImage(String id,MultipartFile file) throws IOException;
+    public Image saveData(Image img);
+    public Image getById(String id);
+    public byte[] downloadImage(Image img);
+    public Boolean deleteImage(Image img);
 }
