@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class RestExceptionHandler {
 
     @ExceptionHandler(value = NoOrderFoundException.class)
-    public ResponseEntity handleNoOrderFoundException(){
+    public ResponseEntity<?> handleNoOrderFoundException(){
         return new ResponseEntity<>("No orders found",HttpStatus.BAD_REQUEST);
 
     }
-    
+    @ExceptionHandler(value = UserNotFoundException.class)
+    public ResponseEntity<?> handleUserNotFoundException(){
+        return new ResponseEntity<>("No User found",HttpStatus.NOT_FOUND);
+
+    }
 }

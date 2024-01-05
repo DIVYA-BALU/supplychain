@@ -1,11 +1,8 @@
 package com.example.jwt.Controller;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.MediaType;
 import com.example.jwt.Entity.Image;
 import com.example.jwt.Service.ImageService;
+
 
 @RestController
 @RequestMapping("/api/images")
@@ -39,6 +37,7 @@ public class ImageController {
             return new ResponseEntity<Image>( new Image(),HttpStatus.BAD_REQUEST);
         }
     }
+   // @PreAuthorize("hasRole('admin')")
     @GetMapping("/select/{id}")
     public ResponseEntity<Image> selectById(@PathVariable("id")String id){
         try {
